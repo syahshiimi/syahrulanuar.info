@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+	font-family: 'TINY';
+	src: url('/fonts/TINY/TINY5x3GX.ttf');
+	font-weight: 20 300;
+}
+
+@font-face {
+	font-family: 'Space Grotesk';
+	src: url('fonts/Space Grotesk/SpaceGrotesk-VariableFont_wght.ttf');
+	font-weight: 300 700;
+}
