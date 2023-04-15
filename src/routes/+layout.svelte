@@ -1,5 +1,10 @@
 <script>
-  import "../app.css";
+	import '../app.css';
 </script>
 
-<slot />
+<main
+	class="min-h-screen w-screen flex flex-col items-center
+    justify-between gap-8 bg-gray dark:bg-eerie-black p-4"
+>
+	<slot />
+</main>
