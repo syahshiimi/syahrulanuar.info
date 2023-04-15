@@ -17,7 +17,7 @@
 		<div
 			in:fade
 			class="flex flex-col gap-y-[32px]
-        col-span-full xl:col-span-8"
+        col-span-full lg:col-span-8"
 		>
 			<p class="text-gray font-basis font-bold text-h3-m xl:text-h3">
 				<span class="text-asparagus">Syahrul Anuar (b. 1995, Singapore)</span> is an artist and cultural

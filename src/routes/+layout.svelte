@@ -1,5 +1,6 @@
 <script>
 	import '../app.css';
+	import Footer from '../components/+footer.svelte';
 </script>
 
 <main
@@ -7,4 +8,5 @@
     justify-between gap-8 bg-gray dark:bg-eerie-black p-4"
 >
 	<slot />
+	<Footer />
 </main>
