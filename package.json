@@ -1,5 +1,5 @@
 {
-	"name": "syahrulanuar.support",
+	"name": "syahrulanuar.info",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
@@ -15,10 +15,6 @@
 		"generate": "graphql-codegen"
 	},
 	"devDependencies": {
-		"@graphql-codegen/cli": "^3.3.0",
-		"@graphql-codegen/typescript": "^3.0.3",
-		"@graphql-codegen/typescript-operations": "^3.0.3",
-		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-static": "^2.0.1",
 		"@sveltejs/adapter-vercel": "^2.1.1",
@@ -29,7 +25,6 @@
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
-		"graphql-codegen-svelte-apollo": "^1.1.0",
 		"postcss": "^8.4.21",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
@@ -44,7 +39,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"graphql": "^16.6.0",
-		"graphql-request": "^6.0.0"
+		"graphql": "^16.6.0"
 	}
 }
