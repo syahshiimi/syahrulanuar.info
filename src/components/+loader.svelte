@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import { fade } from 'svelte/transition';
 
@@ -6,7 +6,6 @@
 	export let visible = false;
 	let expand = false;
 
-	let trackingWidth = 'hover:tracking-normal';
 	function handleLoad() {
 		expand = true;
 

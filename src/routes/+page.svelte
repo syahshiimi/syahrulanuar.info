@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { fade } from 'svelte/transition';
 	import Loader from '../components/+loader.svelte';
 	let visible = true;
