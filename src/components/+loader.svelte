@@ -33,7 +33,7 @@
 			Syahrul Anuar
 		</h1>
 		<h2
-			class="font-spacegrotesk font-semibold text-xl md:text-2xl lg:text-3xl tracking-tight dark:text-gray"
+			class="font-basis text-h3-m font-bold text-xl md:text-2xl lg:text-3xl tracking-tight dark:text-gray"
 		>
 			New Site Under Construction.
 		</h2>
