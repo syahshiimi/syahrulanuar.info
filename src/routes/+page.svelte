@@ -19,7 +19,7 @@
 			class="flex flex-col gap-y-[32px]
         col-span-full lg:col-span-8"
 		>
-			<p class="text-gray font-basis font-bold text-h3-m xl:text-h3">
+			<p class="text-eerie-black dark:text-gray font-basis font-bold text-h3-m xl:text-h3">
 				<span class="text-asparagus">Syahrul Anuar (b. 1995, Singapore)</span> is an artist and cultural
 				worker whose practice moves tangential to the interests of merantau (migration), owing to his
 				family’s diaspora within the Nusantara (Malay World). Intrigued by the narratives and histories
@@ -27,7 +27,7 @@
 				through a research-based practice that would often weave fact and fiction, past and present,
 				the real and the digital.
 			</p>
-			<p class="text-gray font-basis font-bold text-h3-m xl:text-h3">
+			<p class="text-eerie-black dark:text-gray font-basis font-bold text-h3-m xl:text-h3">
 				His practice has been continually expanding beyond the traditional photographic medium,
 				utilising Artificial Intelligence, Machine Learning, Computer Graphics and recently Smart
 				Contracts. They act as both methods and frameworks into reframing and reconfiguring

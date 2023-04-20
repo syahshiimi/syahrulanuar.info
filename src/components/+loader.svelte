@@ -27,7 +27,7 @@
 				expand === false
 					? 'font-[200] hover:font-[80] tracking-[-0.2em] xl:tracking-[-0.2em]'
 					: 'tracking-normal font-[80]'
-			} hover:tracking-normal w-fit transition-all duration-500 ease-in-out text-center text-7xl md:text-8xl lg:text-heading text-asparagus dark:text-red-purple`}
+			} hover:tracking-normal w-fit transition-all duration-500 ease-in-out text-center text-7xl md:text-8xl lg:text-heading text-asparagus text-red-purple`}
 		>
 			Syahrul Anuar
 		</h1>
@@ -38,7 +38,7 @@
 		</h2>
 		<button
 			on:click={handleLoad}
-			class="text-detail font-bold text-gray
+			class="text-detail font-bold text-eerie-black dark:text-gray
         hover:text-asparagus transition-all duration-300
         ease-in-out font-basis"
 		>
