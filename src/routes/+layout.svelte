@@ -1,7 +1,10 @@
 <script lang="ts">
 	import '../app.css';
 	import Footer from '../components/+footer.svelte';
+	import Head from '../components/+head.svelte';
 </script>
+
+<Head />
 
 <main
 	class="min-h-screen w-screen flex flex-col items-center
