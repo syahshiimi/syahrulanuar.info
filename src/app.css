@@ -9,7 +9,27 @@
 }
 
 @font-face {
-	font-family: 'Space Grotesk';
-	src: url('fonts/Space Grotesk/SpaceGrotesk-VariableFont_wght.ttf');
-	font-weight: 300 700;
+	font-family: 'Basis Grotesque';
+	src: url('/fonts/Basis/BasisGrotesqueArabicPro-Black.woff2');
+	font-weight: 800;
+}
+@font-face {
+	font-family: 'Basis Grotesque';
+	src: url('/fonts/Basis/BasisGrotesqueArabicPro-Bold.woff2');
+	font-weight: 700;
+}
+@font-face {
+	font-family: 'Basis Grotesque';
+	src: url('/fonts/Basis/BasisGrotesqueArabicPro-Light.woff2');
+	font-weight: 400;
+}
+@font-face {
+	font-family: 'Basis Grotesque';
+	src: url('/fonts/Basis/BasisGrotesqueArabicPro-Medium.woff2');
+	font-weight: 600;
+}
+@font-face {
+	font-family: 'Basis Grotesque';
+	src: url('/fonts/Basis/BasisGrotesqueArabicPro-Regular.woff2');
+	font-weight: 500;
 }

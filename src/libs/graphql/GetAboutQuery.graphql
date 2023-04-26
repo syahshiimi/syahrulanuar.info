@@ -1,0 +1,10 @@
+query GetAbout {
+	about {
+		id
+		artistBiography {
+			links
+			value
+			blocks
+		}
+	}
+}
