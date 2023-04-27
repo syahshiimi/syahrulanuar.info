@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import Loader from '../components/+loader.svelte';
+	import { StructuredText } from '@datocms/svelte';
+	import { type StructuredText as Frag } from 'datocms-structured-text-utils';
 	import type { PageData } from './$houdini';
+	import { onMount } from 'svelte';
 	let visible = true;
 	let contentVisible = false;
 	function hideLoader() {
@@ -24,6 +27,7 @@
 			class="flex flex-col gap-y-[32px]
         col-span-full lg:col-span-8"
 		>
+			<StructuredText data={$HomeAbout.data?.about?.artistBiography} />
 			<p class="text-eerie-black dark:text-gray font-basis font-bold text-h3-m xl:text-h3">
 				<span class="text-asparagus">Syahrul Anuar (b. 1995, Singapore)</span> is an artist and cultural
 				worker whose practice moves tangential to the interests of merantau (migration), owing to his

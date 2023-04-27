@@ -1,8 +1,9 @@
 query HomeAbout {
 	about {
-		artistEducation {
-			fieldOfStudy
-			academicInstitution
+		artistBiography {
+			value
+			links
+			blocks
 		}
 	}
 }
