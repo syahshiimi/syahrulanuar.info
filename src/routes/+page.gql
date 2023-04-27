@@ -1,0 +1,8 @@
+query HomeAbout {
+	about {
+		artistEducation {
+			fieldOfStudy
+			academicInstitution
+		}
+	}
+}

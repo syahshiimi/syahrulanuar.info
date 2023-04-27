@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import Loader from '../components/+loader.svelte';
+	import type { PageData } from './$houdini';
 	let visible = true;
 	let contentVisible = false;
 	function hideLoader() {
@@ -9,6 +10,10 @@
 			contentVisible = true;
 		}, 1000);
 	}
+
+	export let data: PageData;
+
+	$: ({ HomeAbout } = data);
 </script>
 
 <section class="grid grid-cols-12 grow w-full">
