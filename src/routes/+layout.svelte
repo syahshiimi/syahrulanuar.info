@@ -9,8 +9,15 @@
 <Logo />
 <main
 	class="h-full max-h-full min-h-[100svh] w-screen
-    bg-gray dark:bg-eerie-black p-4 grid grid-cols-16 gap-x-4"
+    bg-gray dark:bg-eerie-black p-4 pt-24 md:pt-4 flex
+    flex-col md:grid md:grid-cols-16 gap-x-4 items-stretch
+    justify-stretch"
 >
-	<slot />
+	<section
+		class="flex flex-col md:col-span-10
+    xl:col-span-4"
+	>
+		<slot />
+	</section>
 	<Footer />
 </main>

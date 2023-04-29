@@ -7,7 +7,7 @@ module.exports = {
                 16: 'repeat(16, minmax(0, 1fr))'
             },
             fontSize: {
-                heading: ['128px', { lineHeight: '130px' }],
+                heading: ['128px', { lineHeight: '128px' }],
                 h2: ['40px', { lineHeight: '42px', letterSpacing: '-0.02em' }],
                 h3: ['32px', { lineHeight: '34px', letterSpacing: '-0.02em' }],
                 'h3-m': ['22px', { lineHeight: '22px', letterSpacing: '-0.02em' }],

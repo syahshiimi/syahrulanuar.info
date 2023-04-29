@@ -24,7 +24,7 @@
         -translate-y-[50%] -translate-x-[50%] grow flex
         flex-col bg-gray dark:bg-eerie-black place-self-center
         col-span-full items-center justify-center gap-y-2
-        xl:gap-y-8`}
+        xl:gap-y-8 z-50`}
 	>
 		<h1
 			class={`font-tiny ${

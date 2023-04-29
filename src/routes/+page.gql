@@ -11,5 +11,6 @@ query GetHome {
 				base64
 			}
 		}
+		artworkTitle
 	}
 }
