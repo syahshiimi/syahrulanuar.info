@@ -5,7 +5,10 @@
 	];
 </script>
 
-<footer class="w-full grid grid-cols-12">
+<footer
+	class="w-full grid grid-cols-12 place-self-end
+col-span-full"
+>
 	{#each links as link}
 		<a
 			href={link.href}

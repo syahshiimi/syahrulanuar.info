@@ -3,6 +3,9 @@ module.exports = {
     content: ['./src/**/*.{html,js,svelte,ts}'],
     theme: {
         extend: {
+            gridTemplateColumns: {
+                16: 'repeat(16, minmax(0, 1fr))'
+            },
             fontSize: {
                 heading: ['128px', { lineHeight: '130px' }],
                 h2: ['40px', { lineHeight: '42px', letterSpacing: '-0.02em' }],
