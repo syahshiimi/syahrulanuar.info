@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { StructuredText } from '@datocms/svelte';
 	import { fly } from 'svelte/transition';
+	import type { PageData } from './$houdini';
 
 	export let data: PageData;
 	$: ({ AboutPage } = data);
