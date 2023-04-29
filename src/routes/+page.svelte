@@ -3,6 +3,7 @@
 	import Loader from '../components/+loader.svelte';
 	import type { PageData } from './$houdini';
 	import { Image } from '@datocms/svelte';
+	import { page } from '$app/stores';
 	let visible = true;
 	let contentVisible = false;
 	function hideLoader() {
@@ -22,7 +23,7 @@
 	{#if contentVisible === true}
 		{#if $GetHome.data}
 			<div
-				transition:fly={{ duration: 500, x: '-100vw' }}
+				in:fly={{ x: -400, duration: 350, delay: 350 }}
 				class="flex flex-col md:flex-row gap-y-2
             md:gap-x-5"
 			>

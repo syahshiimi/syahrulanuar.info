@@ -1,8 +1,11 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
 	import '../app.css';
 	import Footer from '../components/+footer.svelte';
 	import Head from '../components/+head.svelte';
 	import Logo from '../components/+logo.svelte';
+	import type { PageData } from './$houdini';
+	export let data: PageData;
 </script>
 
 <Head />
@@ -13,11 +16,15 @@
     flex-col md:grid md:grid-cols-16 gap-x-4 items-stretch
     justify-stretch"
 >
-	<section
-		class="flex flex-col md:col-span-10
-    xl:col-span-4"
-	>
-		<slot />
-	</section>
+	{#key data.url}
+		<section
+			in:fly={{ x: -400, duration: 350, delay: 350 }}
+			out:fly={{ y: -400, duration: 350 }}
+			class="flex flex-col md:col-span-8
+    xl:col-span-8"
+		>
+			<slot />
+		</section>
+	{/key}
 	<Footer />
 </main>
