@@ -33,7 +33,9 @@
 					: 'tracking-normal font-[80]'
 			} hover:tracking-normal w-fit transition-all
             duration-500 ease-in-out text-center text-7xl
-            md:text-8xl lg:text-heading dark:text-asparagus text-red-purple`}
+            md:text-8xl lg:text-heading dark:text-asparagus
+            text-red-purple selection:bg-none
+            selection:text-asparagus selection:dark:text-red-purple`}
 		>
 			Syahrul Anuar
 		</h1>

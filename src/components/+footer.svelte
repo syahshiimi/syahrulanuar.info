@@ -1,7 +1,9 @@
 <script lang="ts">
 	let links = [
 		{ href: 'https://www.instagram.com/syahshiimi/', name: 'Instagram' },
-		{ href: 'https://www.are.na/syahrul-anuar', name: 'Arena' }
+		{ href: 'https://www.are.na/syahrul-anuar', name: 'Arena' },
+		{ href: '/about', name: 'Info' }
+		// { href: 'https://www.are.na/syahrul-anuar', name: 'Arena' }
 	];
 </script>
 

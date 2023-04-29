@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import Loader from '../components/+loader.svelte';
-	import { StructuredText } from '@datocms/svelte';
-	import { isBlock, isInlineItem, isItemLink } from 'datocms-structured-text-utils';
 	import type { PageData } from './$houdini';
+	import { Image } from '@datocms/svelte';
 	let visible = true;
 	let contentVisible = false;
 	function hideLoader() {
@@ -15,22 +14,25 @@
 
 	export let data: PageData;
 
-	$: ({ HomeAbout } = data);
+	$: ({ GetHome } = data);
 </script>
 
-<Loader on:click={hideLoader} {visible} />
-<section class="grid grid-cols-12 grow w-full">
-	{#if contentVisible === true}
-		<div
-			in:fade
-			class="flex flex-col gap-y-[32px]
-        col-span-full lg:col-span-8"
-		>
-			<div
-				class="text-eerie-black dark:text-gray
-            font-basis font-bold text-h3-m xl:text-h3
-            whitespace-break-spaces flex flex-col gap-10"
-			/>
+<!-- <Loader on:click={hideLoader} {visible} /> -->
+<section class="flex flex-col col-span-8">
+	<!-- {#if contentVisible === true} -->
+	{#if $GetHome.data}
+		<div in:fade class="flex flex-row gap-x-[32px]">
+			{#each $GetHome.data?.allArtworkdetails as image}
+				<Image
+					class="min-h-full aspect-video object-cover
+                    saturate-0 hover:saturate-100
+                    transition-all ease-in-out duration-250"
+					layout="responsive"
+					pictureClass="object-cover object-center"
+					data={image.artworkCoverImage?.responsiveImage}
+				/>
+			{/each}
 		</div>
 	{/if}
+	<!-- {/if} -->
 </section>

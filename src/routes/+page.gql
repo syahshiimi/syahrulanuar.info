@@ -1,9 +1,15 @@
-query HomeAbout {
-	about {
-		artistBiography {
-			value
-			links
-			blocks
+query GetHome {
+	allArtworkdetails {
+		artworkCoverImage {
+			responsiveImage {
+				src
+				width
+				height
+				alt
+				title
+				sizes
+				base64
+			}
 		}
 	}
 }

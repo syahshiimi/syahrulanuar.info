@@ -6,7 +6,6 @@
 </script>
 
 <Head />
-
 <Logo />
 <main
 	class="h-full max-h-full min-h-[100svh] w-screen
