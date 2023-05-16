@@ -2240,7 +2240,7 @@ type Query {
 
     """The locale to use to fetch the field's content"""
     locale: SiteLocale
-  ): CollectionMetadata
+  ): CollectionMetadata!
 
   """Returns the single instance record"""
   _site(

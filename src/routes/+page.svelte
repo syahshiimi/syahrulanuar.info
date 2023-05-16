@@ -1,29 +1,33 @@
 <script lang="ts">
-	import { fade, fly } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 	import Loader from '../components/+loader.svelte';
 	import type { PageData } from './$houdini';
+	Image;
+	import { pageLoaded } from '../../stores';
 	import { Image } from '@datocms/svelte';
-	import { page } from '$app/stores';
-	let visible = true;
-	let contentVisible = false;
-	function hideLoader() {
-		visible = false;
-		setTimeout(() => {
-			contentVisible = true;
-		}, 1000);
-	}
+	import { onMount } from 'svelte';
 
+	let loader: boolean;
+
+	pageLoaded.subscribe((value) => {
+		loader = value;
+	});
+
+	// Houdini
 	export let data: PageData;
 
 	$: ({ GetHome } = data);
 </script>
 
-<Loader on:click={hideLoader} {visible} />
+{#if loader === false}
+	<Loader />
+{/if}
+
 <section class="flex flex-col grow z-10">
-	{#if contentVisible === true}
+	{#if loader === true}
 		{#if $GetHome.data}
 			<div
-				in:fly={{ x: -400, duration: 350, delay: 350 }}
+				in:fly={{ x: -400, duration: 350, delay: 1000 }}
 				class="flex flex-col md:flex-row gap-y-2
             md:gap-x-5"
 			>
@@ -35,7 +39,7 @@
                     transition-all ease-in-out duration-250"
 							layout="responsive"
 							pictureClass="object-cover object-center"
-							data={image.artworkCoverImage?.responsiveImage}
+							data={image?.artworkCoverImage?.responsiveImage ?? {}}
 						/>
 						<p
 							class="absolute z-20 text-detail
