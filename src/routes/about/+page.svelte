@@ -17,7 +17,7 @@ items-center justify-start gap-8 col-span-8"
             font-basis font-medium text-body xl:text-body
             flex flex-col gap-10 selection:bg-mauve-taupe selection:text-asparagus"
 		>
-			<StructuredText data={$AboutPage.data?.about?.artistBiography} />
+			<StructuredText data={$AboutPage.data?.about?.artistBiography ?? []} />
 		</div>
 	{/if}
 </section>
