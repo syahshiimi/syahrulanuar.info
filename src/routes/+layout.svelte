@@ -21,7 +21,7 @@
 			in:fly={{ x: -400, duration: 350, delay: 350 }}
 			out:fly={{ y: -400, duration: 350 }}
 			class="flex flex-col md:col-span-8
-    xl:col-span-8"
+    xl:col-span-8 grow"
 		>
 			<slot />
 		</section>
