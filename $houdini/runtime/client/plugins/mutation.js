@@ -5,7 +5,7 @@ import { documentPlugin } from "../utils";
 const mutation = documentPlugin(ArtifactKind.Mutation, () => {
   return {
     async start(ctx, { next, marshalVariables }) {
-      const layer = cache._internal_unstable.storage.createLayer(true);
+      const layerOptimistic = cache._internal_unstable.storage.createLayer(true);
       const optimisticResponse = ctx.stuff.optimisticResponse;
       let toNotify = [];
       if (optimisticResponse) {
@@ -16,25 +16,29 @@ const mutation = documentPlugin(ArtifactKind.Mutation, () => {
             data: optimisticResponse
           }),
           variables: marshalVariables(ctx),
-          layer: layer.id
+          layer: layerOptimistic.id
         });
       }
       ctx.cacheParams = {
         ...ctx.cacheParams,
-        layer,
+        layer: layerOptimistic,
         notifySubscribers: toNotify,
         forceNotify: true
       };
       next(ctx);
     },
     afterNetwork(ctx, { resolve }) {
-      ctx.cacheParams?.layer?.clear();
+      if (ctx.cacheParams?.layer) {
+        cache.clearLayer(ctx.cacheParams.layer.id);
+      }
       resolve(ctx);
     },
     end(ctx, { resolve, value }) {
       const hasErrors = value.errors && value.errors.length > 0;
       if (hasErrors) {
-        ctx.cacheParams?.layer?.clear();
+        if (ctx.cacheParams?.layer) {
+          cache.clearLayer(ctx.cacheParams.layer.id);
+        }
       }
       if (ctx.cacheParams?.layer) {
         cache._internal_unstable.storage.resolveLayer(ctx.cacheParams.layer.id);
@@ -44,7 +48,7 @@ const mutation = documentPlugin(ArtifactKind.Mutation, () => {
     catch(ctx, { error }) {
       if (ctx.cacheParams?.layer) {
         const { layer } = ctx.cacheParams;
-        layer.clear();
+        cache.clearLayer(layer.id);
         cache._internal_unstable.storage.resolveLayer(layer.id);
       }
       throw error;

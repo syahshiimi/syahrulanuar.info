@@ -21,7 +21,7 @@ export declare class ListManager {
         filters?: List['filters'];
         abstract?: boolean;
     }): void;
-    removeIDFromAllLists(id: string): void;
+    removeIDFromAllLists(id: string, layer?: Layer): void;
     deleteField(parentID: string, field: string): void;
 }
 export declare class List {
@@ -54,8 +54,8 @@ export declare class List {
         layer?: Layer;
     }): void;
     addToList(selection: SubscriptionSelection, data: {}, variables: {} | undefined, where: 'first' | 'last', layer?: Layer): void;
-    removeID(id: string, variables?: {}): true | undefined;
-    remove(data: {}, variables?: {}): true | undefined;
+    removeID(id: string, variables?: {}, layer?: Layer): true | undefined;
+    remove(data: {}, variables?: {}, layer?: Layer): true | undefined;
     listType(data: {
         __typename?: string;
     }): string;

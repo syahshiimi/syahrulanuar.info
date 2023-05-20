@@ -8,6 +8,7 @@ import type { Layer, LayerID } from './storage';
 import { InMemoryStorage } from './storage';
 import { InMemorySubscriptions, type FieldSelection } from './subscription';
 export declare class Cache {
+    #private;
     _internal_unstable: CacheInternal;
     constructor({ disabled, ...config }?: ConfigFile & {
         disabled?: boolean;
@@ -33,7 +34,7 @@ export declare class Cache {
     subscribe(spec: SubscriptionSpec, variables?: {}): void;
     unsubscribe(spec: SubscriptionSpec, variables?: {}): void;
     list(name: string, parentID?: string, allLists?: boolean): ListCollection;
-    delete(id: string): void;
+    delete(id: string, layer?: Layer): void;
     setConfig(config: ConfigFile): void;
     markTypeStale(options?: {
         type: string;
@@ -46,6 +47,7 @@ export declare class Cache {
     }): void;
     getFieldTime(id: string, field: string): number | null | undefined;
     config(): ConfigFile;
+    clearLayer(layerID: Layer['id']): void;
 }
 declare class CacheInternal {
     private _disabled;

@@ -64,10 +64,10 @@ class ListManager {
     this.lists.get(list.name).get(parentID).lists.push(handler);
     this.listsByField.get(parentID).get(list.key).push(handler);
   }
-  removeIDFromAllLists(id) {
+  removeIDFromAllLists(id, layer) {
     for (const fieldMap of this.lists.values()) {
       for (const list of fieldMap.values()) {
-        list.removeID(id);
+        list.removeID(id, void 0, layer);
       }
     }
   }
@@ -224,7 +224,7 @@ class List {
       layer: layer?.id
     });
   }
-  removeID(id, variables = {}) {
+  removeID(id, variables = {}, layer) {
     if (!this.validateWhen()) {
       return;
     }
@@ -271,7 +271,7 @@ class List {
       subscribers.map((sub) => sub[0]),
       variables
     );
-    this.cache._internal_unstable.storage.remove(parentID, targetKey, targetID);
+    this.cache._internal_unstable.storage.remove(parentID, targetKey, targetID, layer);
     for (const [spec] of subscribers) {
       spec.set(
         this.cache._internal_unstable.getSelection({
@@ -284,12 +284,12 @@ class List {
     }
     return true;
   }
-  remove(data, variables = {}) {
+  remove(data, variables = {}, layer) {
     const targetID = this.cache._internal_unstable.id(this.listType(data), data);
     if (!targetID) {
       return;
     }
-    return this.removeID(targetID, variables);
+    return this.removeID(targetID, variables, layer);
   }
   listType(data) {
     return data.__typename || this.type;
@@ -321,7 +321,7 @@ class List {
     layer,
     where
   }) {
-    if (!this.remove(data, variables)) {
+    if (!this.remove(data, variables, layer)) {
       this.addToList(selection, data, variables, where, layer);
     }
   }

@@ -33,20 +33,7 @@ class Cache {
   }) {
     const layer = layerID ? this._internal_unstable.storage.getLayer(layerID) : this._internal_unstable.storage.topLayer;
     const subscribers = this._internal_unstable.writeSelection({ ...args, layer }).map((sub) => sub[0]);
-    const notified = [];
-    for (const spec of subscribers.concat(notifySubscribers)) {
-      if (!notified.includes(spec.set)) {
-        notified.push(spec.set);
-        spec.set(
-          this._internal_unstable.getSelection({
-            parent: spec.parentID || rootID,
-            selection: spec.selection,
-            variables: spec.variables?.() || {},
-            ignoreMasking: false
-          }).data
-        );
-      }
-    }
+    this.#notifySubscribers(subscribers.concat(notifySubscribers));
     return subscribers;
   }
   read(...args) {
@@ -85,10 +72,10 @@ class Cache {
     }
     return handler;
   }
-  delete(id) {
+  delete(id, layer) {
     this._internal_unstable.subscriptions.removeAllSubscribers(id);
-    this._internal_unstable.lists.removeIDFromAllLists(id);
-    this._internal_unstable.storage.delete(id);
+    this._internal_unstable.lists.removeIDFromAllLists(id, layer);
+    this._internal_unstable.storage.delete(id, layer);
   }
   setConfig(config) {
     this._internal_unstable.setConfig(config);
@@ -119,6 +106,70 @@ class Cache {
   }
   config() {
     return this._internal_unstable.config;
+  }
+  clearLayer(layerID) {
+    const layer = this._internal_unstable.storage.getLayer(layerID);
+    if (!layer) {
+      throw new Error("Cannot find layer with id: " + layerID);
+    }
+    const toNotify = [];
+    const allFields = [];
+    for (const target of [layer.fields, layer.links]) {
+      for (const [id, fields] of Object.entries(target)) {
+        allFields.push(
+          ...Object.entries(fields).map(([field, value]) => ({ id, field, value }))
+        );
+      }
+    }
+    const displayFields = [];
+    for (const pair of allFields) {
+      const { displayLayers } = this._internal_unstable.storage.get(pair.id, pair.field);
+      if (!displayLayers.includes(layerID)) {
+        continue;
+      }
+      displayFields.push(pair);
+    }
+    for (const [id, operation] of Object.entries(layer.operations)) {
+      if (operation.deleted) {
+        displayFields.push(
+          ...this._internal_unstable.subscriptions.activeFields(id).map((field) => ({ id, field }))
+        );
+      }
+      const fields = Object.keys(operation.fields ?? {});
+      if (fields.length > 0) {
+        displayFields.push(...fields.map((field) => ({ id, field })));
+      }
+    }
+    layer.clear();
+    for (const display of displayFields) {
+      const { field, id } = display;
+      const notify = !("value" in display) || this._internal_unstable.storage.get(id, field).value !== display.value;
+      if (notify) {
+        toNotify.push(
+          ...this._internal_unstable.subscriptions.get(id, field).map((sub) => sub[0])
+        );
+      }
+    }
+    this.#notifySubscribers(toNotify);
+  }
+  #notifySubscribers(subs) {
+    if (subs.length === 0) {
+      return;
+    }
+    const notified = [];
+    for (const spec of subs) {
+      if (!notified.includes(spec.set)) {
+        notified.push(spec.set);
+        spec.set(
+          this._internal_unstable.getSelection({
+            parent: spec.parentID || rootID,
+            selection: spec.selection,
+            variables: spec.variables?.() || {},
+            ignoreMasking: false
+          }).data
+        );
+      }
+    }
   }
 }
 class CacheInternal {
@@ -407,17 +458,6 @@ class CacheInternal {
               operation.position || "last",
               layer
             );
-          } else if (operation.action === "remove" && target instanceof Object && fieldSelection && operation.list) {
-            this.cache.list(operation.list, parentID, operation.target === "all").when(operation.when).remove(target, variables);
-          } else if (operation.action === "delete" && operation.type) {
-            if (typeof target !== "string") {
-              throw new Error("Cannot delete a record with a non-string ID");
-            }
-            const targetID = this.id(operation.type, target);
-            if (!targetID) {
-              continue;
-            }
-            this.cache.delete(targetID);
           } else if (operation.action === "toggle" && target instanceof Object && fieldSelection && operation.list) {
             this.cache.list(operation.list, parentID, operation.target === "all").when(operation.when).toggleElement({
               selection: fieldSelection,
@@ -426,6 +466,17 @@ class CacheInternal {
               where: operation.position || "last",
               layer
             });
+          } else if (operation.action === "remove" && target instanceof Object && fieldSelection && operation.list) {
+            this.cache.list(operation.list, parentID, operation.target === "all").when(operation.when).remove(target, variables, layer);
+          } else if (operation.action === "delete" && operation.type) {
+            if (typeof target !== "string") {
+              throw new Error("Cannot delete a record with a non-string ID");
+            }
+            const targetID = this.id(operation.type, target);
+            if (!targetID) {
+              continue;
+            }
+            this.cache.delete(targetID, layer);
           }
         }
       }

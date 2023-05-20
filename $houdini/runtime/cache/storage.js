@@ -1,7 +1,7 @@
 import { flatten } from "../lib/flatten";
 class InMemoryStorage {
   data;
-  idCount = 0;
+  idCount = 1;
   rank = 0;
   constructor() {
     this.data = [];
@@ -21,11 +21,11 @@ class InMemoryStorage {
   insert(id, field, location, target) {
     return this.topLayer.insert(id, field, location, target);
   }
-  remove(id, field, target) {
-    return this.topLayer.remove(id, field, target);
+  remove(id, field, target, layerToUser = this.topLayer) {
+    return layerToUser.remove(id, field, target);
   }
-  delete(id) {
-    return this.topLayer.delete(id);
+  delete(id, layerToUser = this.topLayer) {
+    return layerToUser.delete(id);
   }
   deleteField(id, field) {
     return this.topLayer.deleteField(id, field);

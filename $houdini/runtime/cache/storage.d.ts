@@ -8,8 +8,8 @@ export declare class InMemoryStorage {
     get nextRank(): number;
     createLayer(optimistic?: boolean): Layer;
     insert(id: string, field: string, location: OperationLocations, target: string): void;
-    remove(id: string, field: string, target: string): void;
-    delete(id: string): void;
+    remove(id: string, field: string, target: string, layerToUser?: Layer): void;
+    delete(id: string, layerToUser?: Layer): void;
     deleteField(id: string, field: string): void;
     getLayer(id: number): Layer;
     replaceID(replacement: {

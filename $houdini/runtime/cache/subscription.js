@@ -9,6 +9,9 @@ class InMemorySubscriptions {
   subscribers = {};
   referenceCounts = {};
   keyVersions = {};
+  activeFields(parent) {
+    return Object.keys(this.subscribers[parent] || {});
+  }
   add({
     parent,
     spec,

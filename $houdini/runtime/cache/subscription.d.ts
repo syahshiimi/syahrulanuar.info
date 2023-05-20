@@ -10,6 +10,7 @@ export declare class InMemorySubscriptions {
     private subscribers;
     private referenceCounts;
     private keyVersions;
+    activeFields(parent: string): string[];
     add({ parent, spec, selection, variables, parentType, }: {
         parent: string;
         parentType?: string;
