@@ -1,0 +1,16 @@
+query GetHome {
+	allArtworkdetails {
+		artworkCoverImage {
+			responsiveImage {
+				src
+				width
+				height
+				alt
+				title
+				sizes
+				base64
+			}
+		}
+		artworkTitle
+	}
+}

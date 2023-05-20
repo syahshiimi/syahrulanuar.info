@@ -1,44 +1,58 @@
 <script lang="ts">
-	import { fade } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 	import Loader from '../components/+loader.svelte';
-	let visible = true;
-	let contentVisible = false;
-	function hideLoader() {
-		visible = false;
-		setTimeout(() => {
-			contentVisible = true;
-		}, 1000);
-	}
+	import type { PageData } from './$houdini';
+	Image;
+	import { pageLoaded } from '../../stores';
+	import { Image } from '@datocms/svelte';
+	import { onMount } from 'svelte';
+
+	let loader: boolean;
+
+	pageLoaded.subscribe((value) => {
+		loader = value;
+	});
+
+	// Houdini
+	export let data: PageData;
+
+	$: ({ GetHome } = data);
 </script>
 
-<section class="grid grid-cols-12 grow w-full">
-	<Loader on:click={hideLoader} {visible} />
-	{#if contentVisible === true}
-		<div
-			in:fade
-			class="flex flex-col gap-y-[32px]
-        col-span-full lg:col-span-8"
-		>
-			<p class="text-eerie-black dark:text-gray font-basis font-bold text-h3-m xl:text-h3">
-				<span class="text-asparagus">Syahrul Anuar (b. 1995, Singapore)</span> is an artist and cultural
-				worker whose practice moves tangential to the interests of merantau (migration), owing to his
-				family’s diaspora within the Nusantara (Malay World). Intrigued by the narratives and histories
-				of the Malay World and how humans have meandered it, he surveys and unravels its complex multiplicities
-				through a research-based practice that would often weave fact and fiction, past and present,
-				the real and the digital.
-			</p>
-			<p class="text-eerie-black dark:text-gray font-basis font-bold text-h3-m xl:text-h3">
-				His practice has been continually expanding beyond the traditional photographic medium,
-				utilising Artificial Intelligence, Machine Learning, Computer Graphics and recently Smart
-				Contracts. They act as both methods and frameworks into reframing and reconfiguring
-				photography in a complex and dynamic landscape.
-			</p>
-			<p class="text-gray font-basis font-bold text-h3-m xl:text-h3">
-				Syahrul is a graduate of the Nanyang Technological University, School of Art, Design Media
-				with a BFA in Media Art (Photography). For his excellence, he received the Kwek Leng Joo
-				Prize of Excellence in 2021. He has exhibited his works across Singapore, China and the
-				Netherlands. He freelances as a full-stack developer and educator.
-			</p>
-		</div>
+{#if loader === false}
+	<Loader />
+{/if}
+
+<section class="flex flex-col grow z-10">
+	{#if loader === true}
+		{#if $GetHome.data}
+			<div
+				in:fly={{ x: -400, duration: 350, delay: 1000 }}
+				class="flex flex-col md:flex-row gap-y-2
+            md:gap-x-5"
+			>
+				{#each $GetHome.data?.allArtworkdetails as image}
+					<div class="relative aspect-video object-fill">
+						<Image
+							class="peer min-h-full aspect-video object-cover
+                    saturate-0 hover:saturate-100
+                    transition-all ease-in-out duration-250"
+							layout="responsive"
+							pictureClass="object-cover object-center"
+							data={image?.artworkCoverImage?.responsiveImage ?? {}}
+						/>
+						<p
+							class="absolute z-20 text-detail
+                        font-bold text-mauve-taupe
+                    font-basis top-2 left-4 max-w-[30ch]
+                    opacity-0 peer-hover:opacity-100
+                    transition-all duration-250 ease-in-out"
+						>
+							{image.artworkTitle}
+						</p>
+					</div>
+				{/each}
+			</div>
+		{/if}
 	{/if}
 </section>

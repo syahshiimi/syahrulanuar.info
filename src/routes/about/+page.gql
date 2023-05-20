@@ -1,0 +1,59 @@
+query AboutPage {
+	about {
+		artistBiography {
+			value
+			links
+			blocks
+		}
+		artistEducation {
+			academicInstitution
+			fieldOfStudy
+			year
+		}
+		artistAward {
+			governingBody
+			year
+			id
+		}
+		artistTalk {
+			exhibitionYear
+			exhibitionTitle
+			exhibitionLocation
+			exhibitionCountry {
+				latitude
+				longitude
+			}
+			artworksPresented {
+				artworkTitle
+				artworkSlug
+				artworkYear
+			}
+		}
+		artistWorkshopsAndResidencies {
+			exhibitionTitle
+			exhibitionYear
+			exhibitionLocation
+			exhibitionCountry {
+				latitude
+				longitude
+			}
+			artworksPresented {
+				artworkTitle
+				id
+			}
+			id
+		}
+		pastExhibitions {
+			exhibitionTitle
+			exhibitionLocation
+			exhibitionYear
+			id
+		}
+		pressAndMedia {
+			id
+			pressMediaTitle
+			url
+			year
+		}
+	}
+}
