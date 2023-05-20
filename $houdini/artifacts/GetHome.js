@@ -1,7 +1,7 @@
 export default {
     "name": "GetHome",
     "kind": "HoudiniQuery",
-    "hash": "ead3ab25bdf72b1c1f7f9ecaffb16b98aefdea4e4f3a8484f417a87ce32c7b16",
+    "hash": "0716d561df9190d5e76fe69858685a0c160d3ceb1999d6ce2800db741dde05db",
 
     "raw": `query GetHome {
   allArtworkdetails {
@@ -18,6 +18,12 @@ export default {
       id
     }
     artworkTitle
+    artworkSlug
+    artworkWriteup {
+      value
+      links
+      blocks
+    }
     id
   }
 }
@@ -115,6 +121,43 @@ export default {
                             "visible": true
                         },
 
+                        "artworkSlug": {
+                            "type": "String",
+                            "keyRaw": "artworkSlug",
+                            "nullable": true,
+                            "visible": true
+                        },
+
+                        "artworkWriteup": {
+                            "type": "ArtworkdetailModelArtworkWriteupField",
+                            "keyRaw": "artworkWriteup",
+                            "nullable": true,
+
+                            "selection": {
+                                "fields": {
+                                    "value": {
+                                        "type": "JsonField",
+                                        "keyRaw": "value",
+                                        "visible": true
+                                    },
+
+                                    "links": {
+                                        "type": "String",
+                                        "keyRaw": "links",
+                                        "visible": true
+                                    },
+
+                                    "blocks": {
+                                        "type": "String",
+                                        "keyRaw": "blocks",
+                                        "visible": true
+                                    }
+                                }
+                            },
+
+                            "visible": true
+                        },
+
                         "id": {
                             "type": "ItemId",
                             "keyRaw": "id",
@@ -136,4 +179,4 @@ export default {
     "partial": false
 };
 
-"HoudiniHash=ead3ab25bdf72b1c1f7f9ecaffb16b98aefdea4e4f3a8484f417a87ce32c7b16";
+"HoudiniHash=0716d561df9190d5e76fe69858685a0c160d3ceb1999d6ce2800db741dde05db";

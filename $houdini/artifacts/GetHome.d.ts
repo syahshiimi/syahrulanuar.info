@@ -17,6 +17,12 @@ export type GetHome$result = {
             } | null;
         } | null;
         readonly artworkTitle: string | null;
+        readonly artworkSlug: string | null;
+        readonly artworkWriteup: {
+            readonly value: any;
+            readonly links: (string)[];
+            readonly blocks: (string)[];
+        } | null;
     })[];
 };
 
@@ -25,7 +31,7 @@ export type GetHome$input = null;
 export type GetHome$artifact = {
     "name": "GetHome";
     "kind": "HoudiniQuery";
-    "hash": "ead3ab25bdf72b1c1f7f9ecaffb16b98aefdea4e4f3a8484f417a87ce32c7b16";
+    "hash": "0716d561df9190d5e76fe69858685a0c160d3ceb1999d6ce2800db741dde05db";
     "raw": `query GetHome {
   allArtworkdetails {
     artworkCoverImage {
@@ -41,6 +47,12 @@ export type GetHome$artifact = {
       id
     }
     artworkTitle
+    artworkSlug
+    artworkWriteup {
+      value
+      links
+      blocks
+    }
     id
   }
 }
@@ -120,6 +132,37 @@ export type GetHome$artifact = {
                             "type": "String";
                             "keyRaw": "artworkTitle";
                             "nullable": true;
+                            "visible": true;
+                        };
+                        "artworkSlug": {
+                            "type": "String";
+                            "keyRaw": "artworkSlug";
+                            "nullable": true;
+                            "visible": true;
+                        };
+                        "artworkWriteup": {
+                            "type": "ArtworkdetailModelArtworkWriteupField";
+                            "keyRaw": "artworkWriteup";
+                            "nullable": true;
+                            "selection": {
+                                "fields": {
+                                    "value": {
+                                        "type": "JsonField";
+                                        "keyRaw": "value";
+                                        "visible": true;
+                                    };
+                                    "links": {
+                                        "type": "String";
+                                        "keyRaw": "links";
+                                        "visible": true;
+                                    };
+                                    "blocks": {
+                                        "type": "String";
+                                        "keyRaw": "blocks";
+                                        "visible": true;
+                                    };
+                                };
+                            };
                             "visible": true;
                         };
                         "id": {

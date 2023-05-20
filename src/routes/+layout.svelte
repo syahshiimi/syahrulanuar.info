@@ -1,8 +1,8 @@
 <script lang="ts">
 	import '../app.css';
-	import Footer from '../components/+footer.svelte';
-	import Head from '../components/+head.svelte';
-	import Logo from '../components/+logo.svelte';
+	import Footer from '../components/footer.svelte';
+	import Head from '../components/head.svelte';
+	import Logo from '../components/logo.svelte';
 	import type { PageData } from './$houdini';
 	export let data: PageData;
 </script>

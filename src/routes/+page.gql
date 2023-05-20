@@ -12,5 +12,11 @@ query GetHome {
 			}
 		}
 		artworkTitle
+		artworkSlug
+		artworkWriteup {
+			value
+			links
+			blocks
+		}
 	}
 }

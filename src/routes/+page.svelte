@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	import Loader from '../components/+loader.svelte';
+	import Loader from '../components/loader.svelte';
 	import type { PageData } from './$houdini';
 	import { pageLoaded } from '../../stores';
 	import { Image } from '@datocms/svelte';
+	import { onMount } from 'svelte';
 
 	// loader
 	let hasLoaded: boolean;
