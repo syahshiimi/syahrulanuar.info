@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
 	import '../app.css';
 	import Footer from '../components/+footer.svelte';
 	import Head from '../components/+head.svelte';
@@ -17,14 +16,7 @@
     justify-stretch"
 >
 	{#key data.url}
-		<!-- 	<section -->
-		<!-- 		in:fly={{ x: -400, duration: 350, delay: 350 }} -->
-		<!-- 		out:fly={{ y: -400, duration: 350 }} -->
-		<!-- 		class="flex flex-col w-full h-full grow -->
-		<!--             col-span-full row-span-full" -->
-		<!-- > -->
 		<slot />
-		<!-- </section> -->
 	{/key}
 	<Footer />
 </main>
