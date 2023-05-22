@@ -1,58 +1,75 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	import Loader from '../components/+loader.svelte';
+	import Loader from '../components/loader.svelte';
 	import type { PageData } from './$houdini';
-	Image;
 	import { pageLoaded } from '../../stores';
-	import { Image } from '@datocms/svelte';
-	import { onMount } from 'svelte';
+	import Featureslider from '../components/dato/featureslider.svelte';
 
-	let loader: boolean;
-
+	// loader
+	let hasLoaded: boolean;
 	pageLoaded.subscribe((value) => {
-		loader = value;
+		hasLoaded = value;
 	});
 
 	// Houdini
 	export let data: PageData;
 
+	// Hover trigger
+	let isHovering: boolean = false;
+
 	$: ({ GetHome } = data);
+
+	console.log(isHovering);
 </script>
 
-{#if loader === false}
+{#if hasLoaded === false}
 	<Loader />
 {/if}
 
-<section class="flex flex-col grow z-10">
-	{#if loader === true}
-		{#if $GetHome.data}
-			<div
-				in:fly={{ x: -400, duration: 350, delay: 1000 }}
-				class="flex flex-col md:flex-row gap-y-2
+{#if hasLoaded === true}
+	{#if $GetHome.data}
+		<div
+			in:fly={{ x: -400, duration: 350, delay: 1000 }}
+			class="col-start-1 col-span-10 flex flex-col md:flex-row gap-y-2
             md:gap-x-5"
-			>
-				{#each $GetHome.data?.allArtworkdetails as image}
-					<div class="relative aspect-video object-fill">
-						<Image
-							class="peer min-h-full aspect-video object-cover
-                    saturate-0 hover:saturate-100
-                    transition-all ease-in-out duration-250"
-							layout="responsive"
-							pictureClass="object-cover object-center"
-							data={image?.artworkCoverImage?.responsiveImage ?? {}}
-						/>
-						<p
-							class="absolute z-20 text-detail
-                        font-bold text-mauve-taupe
-                    font-basis top-2 left-4 max-w-[30ch]
-                    opacity-0 peer-hover:opacity-100
-                    transition-all duration-250 ease-in-out"
+		>
+			{#each $GetHome.data?.allArtworkdetails as image}
+				<Featureslider image={image ?? {}} />
+			{/each}
+		</div>
+		<div class="col-span-full row-end-3 self-end">
+			<ul>
+				{#each $GetHome.data?.allArtworkdetails as element, index}
+					<li
+						on:mouseenter={() => {
+							isHovering = true;
+						}}
+						on:mouseleave={() => {
+							isHovering = false;
+						}}
+						in:fly={{ x: -400, duration: 350, delay: 900 + 250 * index }}
+						class="py-4
+                    text-info font-basis hover:pb-24 transition-all
+                    duration-250 ease-in flex flex-row justify-between"
+					>
+						<span
+							class="font-bold font-basis
+                        text-info text-eerie-black"
 						>
-							{image.artworkTitle}
-						</p>
-					</div>
+							{element.artworkTitle}
+						</span>
+						<span
+							class="font-bold font-basis
+                        text-eerie-black">{element.artworkYear}</span
+						>
+					</li>
+					<hr
+						in:fly={{ x: -400, duration: 1000 + 250 * index, delay: 1200 + 250 * index }}
+						class="border-t-2 border-eerie-black
+                        transition-all ease-in"
+					/>
 				{/each}
-			</div>
-		{/if}
+			</ul>
+		</div>
 	{/if}
-</section>
+{/if}

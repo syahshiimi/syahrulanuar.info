@@ -17,6 +17,13 @@ export type GetHome$result = {
             } | null;
         } | null;
         readonly artworkTitle: string | null;
+        readonly artworkYear: string | null;
+        readonly artworkSlug: string | null;
+        readonly artworkWriteup: {
+            readonly value: any;
+            readonly links: (string)[];
+            readonly blocks: (string)[];
+        } | null;
     })[];
 };
 
@@ -25,7 +32,7 @@ export type GetHome$input = null;
 export type GetHome$artifact = {
     "name": "GetHome";
     "kind": "HoudiniQuery";
-    "hash": "ead3ab25bdf72b1c1f7f9ecaffb16b98aefdea4e4f3a8484f417a87ce32c7b16";
+    "hash": "da1fd16ec8c053c316481f8859f217b1828ba3a6c65e07c690ffec2eaf1c152d";
     "raw": `query GetHome {
   allArtworkdetails {
     artworkCoverImage {
@@ -41,6 +48,13 @@ export type GetHome$artifact = {
       id
     }
     artworkTitle
+    artworkYear
+    artworkSlug
+    artworkWriteup {
+      value
+      links
+      blocks
+    }
     id
   }
 }
@@ -120,6 +134,43 @@ export type GetHome$artifact = {
                             "type": "String";
                             "keyRaw": "artworkTitle";
                             "nullable": true;
+                            "visible": true;
+                        };
+                        "artworkYear": {
+                            "type": "String";
+                            "keyRaw": "artworkYear";
+                            "nullable": true;
+                            "visible": true;
+                        };
+                        "artworkSlug": {
+                            "type": "String";
+                            "keyRaw": "artworkSlug";
+                            "nullable": true;
+                            "visible": true;
+                        };
+                        "artworkWriteup": {
+                            "type": "ArtworkdetailModelArtworkWriteupField";
+                            "keyRaw": "artworkWriteup";
+                            "nullable": true;
+                            "selection": {
+                                "fields": {
+                                    "value": {
+                                        "type": "JsonField";
+                                        "keyRaw": "value";
+                                        "visible": true;
+                                    };
+                                    "links": {
+                                        "type": "String";
+                                        "keyRaw": "links";
+                                        "visible": true;
+                                    };
+                                    "blocks": {
+                                        "type": "String";
+                                        "keyRaw": "blocks";
+                                        "visible": true;
+                                    };
+                                };
+                            };
                             "visible": true;
                         };
                         "id": {

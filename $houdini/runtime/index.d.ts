@@ -11,7 +11,7 @@ export function graphql(
 ): AboutPageStore;
 
 export function graphql(
-    str: "query GetHome {\n\tallArtworkdetails {\n\t\tartworkCoverImage {\n\t\t\tresponsiveImage {\n\t\t\t\tsrc\n\t\t\t\twidth\n\t\t\t\theight\n\t\t\t\talt\n\t\t\t\ttitle\n\t\t\t\tsizes\n\t\t\t\tbase64\n\t\t\t}\n\t\t}\n\t\tartworkTitle\n\t}\n}\n"
+    str: "query GetHome {\n\tallArtworkdetails {\n\t\tartworkCoverImage {\n\t\t\tresponsiveImage {\n\t\t\t\tsrc\n\t\t\t\twidth\n\t\t\t\theight\n\t\t\t\talt\n\t\t\t\ttitle\n\t\t\t\tsizes\n\t\t\t\tbase64\n\t\t\t}\n\t\t}\n\t\tartworkTitle\n\t\tartworkYear\n\t\tartworkSlug\n\t\tartworkWriteup {\n\t\t\tvalue\n\t\t\tlinks\n\t\t\tblocks\n\t\t}\n\t}\n}\n"
 ): GetHomeStore;
 
 export declare function graphql<_Payload>(str: TemplateStringsArray): _Payload;

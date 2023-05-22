@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
 	import '../app.css';
-	import Footer from '../components/+footer.svelte';
-	import Head from '../components/+head.svelte';
-	import Logo from '../components/+logo.svelte';
+	import Footer from '../components/footer.svelte';
+	import Head from '../components/head.svelte';
+	import Logo from '../components/logo.svelte';
 	import type { PageData } from './$houdini';
 	export let data: PageData;
 </script>
@@ -17,14 +16,7 @@
     justify-stretch"
 >
 	{#key data.url}
-		<section
-			in:fly={{ x: -400, duration: 350, delay: 350 }}
-			out:fly={{ y: -400, duration: 350 }}
-			class="flex flex-col md:col-span-8
-    xl:col-span-8 grow"
-		>
-			<slot />
-		</section>
+		<slot />
 	{/key}
 	<Footer />
 </main>
