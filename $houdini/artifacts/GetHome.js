@@ -1,7 +1,7 @@
 export default {
     "name": "GetHome",
     "kind": "HoudiniQuery",
-    "hash": "0716d561df9190d5e76fe69858685a0c160d3ceb1999d6ce2800db741dde05db",
+    "hash": "da1fd16ec8c053c316481f8859f217b1828ba3a6c65e07c690ffec2eaf1c152d",
 
     "raw": `query GetHome {
   allArtworkdetails {
@@ -18,6 +18,7 @@ export default {
       id
     }
     artworkTitle
+    artworkYear
     artworkSlug
     artworkWriteup {
       value
@@ -121,6 +122,13 @@ export default {
                             "visible": true
                         },
 
+                        "artworkYear": {
+                            "type": "String",
+                            "keyRaw": "artworkYear",
+                            "nullable": true,
+                            "visible": true
+                        },
+
                         "artworkSlug": {
                             "type": "String",
                             "keyRaw": "artworkSlug",
@@ -179,4 +187,4 @@ export default {
     "partial": false
 };
 
-"HoudiniHash=0716d561df9190d5e76fe69858685a0c160d3ceb1999d6ce2800db741dde05db";
+"HoudiniHash=da1fd16ec8c053c316481f8859f217b1828ba3a6c65e07c690ffec2eaf1c152d";

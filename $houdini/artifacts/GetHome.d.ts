@@ -17,6 +17,7 @@ export type GetHome$result = {
             } | null;
         } | null;
         readonly artworkTitle: string | null;
+        readonly artworkYear: string | null;
         readonly artworkSlug: string | null;
         readonly artworkWriteup: {
             readonly value: any;
@@ -31,7 +32,7 @@ export type GetHome$input = null;
 export type GetHome$artifact = {
     "name": "GetHome";
     "kind": "HoudiniQuery";
-    "hash": "0716d561df9190d5e76fe69858685a0c160d3ceb1999d6ce2800db741dde05db";
+    "hash": "da1fd16ec8c053c316481f8859f217b1828ba3a6c65e07c690ffec2eaf1c152d";
     "raw": `query GetHome {
   allArtworkdetails {
     artworkCoverImage {
@@ -47,6 +48,7 @@ export type GetHome$artifact = {
       id
     }
     artworkTitle
+    artworkYear
     artworkSlug
     artworkWriteup {
       value
@@ -131,6 +133,12 @@ export type GetHome$artifact = {
                         "artworkTitle": {
                             "type": "String";
                             "keyRaw": "artworkTitle";
+                            "nullable": true;
+                            "visible": true;
+                        };
+                        "artworkYear": {
+                            "type": "String";
+                            "keyRaw": "artworkYear";
                             "nullable": true;
                             "visible": true;
                         };

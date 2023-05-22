@@ -12,6 +12,7 @@ query GetHome {
 			}
 		}
 		artworkTitle
+		artworkYear
 		artworkSlug
 		artworkWriteup {
 			value
