@@ -14,7 +14,12 @@
 	// Houdini
 	export let data: PageData;
 
+	// Hover trigger
+	let isHovering: boolean = false;
+
 	$: ({ GetHome } = data);
+
+	console.log(isHovering);
 </script>
 
 {#if hasLoaded === false}
@@ -36,6 +41,12 @@
 			<ul>
 				{#each $GetHome.data?.allArtworkdetails as element, index}
 					<li
+						on:mouseenter={() => {
+							isHovering = true;
+						}}
+						on:mouseleave={() => {
+							isHovering = false;
+						}}
 						in:fly={{ x: -400, duration: 350, delay: 900 + 250 * index }}
 						class="py-4
                     text-info font-basis hover:pb-24 transition-all
