@@ -12,11 +12,11 @@
 <main
 	class="h-full max-h-fit min-h-[100svh] w-screen
     bg-gray dark:bg-eerie-black p-4 pt-24 md:pt-4 flex
-    flex-col md:grid md:grid-cols-16 gap-x-4 items-stretch
-    justify-stretch pb-20 lg:pb-16"
+    flex-col md:flex md:flex-col gap-x-4 md:gap-y-20 items-stretch
+    justify-between pb-20 lg:pb-16"
 >
 	{#key data.url}
 		<slot />
 	{/key}
-	<Footer />
 </main>
+<Footer />

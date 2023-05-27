@@ -255,6 +255,14 @@ type SeoFilter = {
     exists?: any | null | undefined;
 };
 
+type StructuredTextFilter = {
+    exists?: any | null | undefined;
+    isBlank?: any | null | undefined;
+    isPresent?: any | null | undefined;
+    matches?: StringMatchesFilter | null | undefined;
+    notMatches?: StringMatchesFilter | null | undefined;
+};
+
 type SlugFilter = {
     eq?: string | null | undefined;
     in?: (string | null | undefined)[] | null | undefined;
@@ -271,14 +279,6 @@ type StringFilter = {
     matches?: StringMatchesFilter | null | undefined;
     neq?: string | null | undefined;
     notIn?: (string | null | undefined)[] | null | undefined;
-    notMatches?: StringMatchesFilter | null | undefined;
-};
-
-type StructuredTextFilter = {
-    exists?: any | null | undefined;
-    isBlank?: any | null | undefined;
-    isPresent?: any | null | undefined;
-    matches?: StringMatchesFilter | null | undefined;
     notMatches?: StringMatchesFilter | null | undefined;
 };
 
@@ -304,6 +304,7 @@ type ArtworkdetailModelFilter = {
     artworkImageGallery?: GalleryFilter | null | undefined;
     artworkMediums?: TextFilter | null | undefined;
     artworkSeoTags?: SeoFilter | null | undefined;
+    artworkShortWriteup?: StructuredTextFilter | null | undefined;
     artworkSlug?: SlugFilter | null | undefined;
     artworkTitle?: StringFilter | null | undefined;
     artworkWriteup?: StructuredTextFilter | null | undefined;
@@ -875,6 +876,38 @@ export declare type CacheTypeDef = {
             };
             fragments: [];
         };
+        ArtworkdetailModelArtworkShortWriteupField: {
+            idFields: never;
+            fields: {
+                blocks: {
+                    type: (string)[];
+                    args: never;
+                };
+                links: {
+                    type: (string)[];
+                    args: never;
+                };
+                value: {
+                    type: any;
+                    args: never;
+                };
+            };
+            fragments: [];
+        };
+        ArtworkdetailModelArtworkShortWriteupFieldMultiLocaleField: {
+            idFields: never;
+            fields: {
+                locale: {
+                    type: SiteLocale | null;
+                    args: never;
+                };
+                value: {
+                    type: Record<CacheTypeDef, "ArtworkdetailModelArtworkShortWriteupField"> | null;
+                    args: never;
+                };
+            };
+            fragments: [];
+        };
         ArtworkdetailModelArtworkWriteupField: {
             idFields: never;
             fields: {
@@ -898,6 +931,13 @@ export declare type CacheTypeDef = {
                 id: any;
             };
             fields: {
+                _allArtworkShortWriteupLocales: {
+                    type: (Record<CacheTypeDef, "ArtworkdetailModelArtworkShortWriteupFieldMultiLocaleField">)[] | null;
+                    args: {
+                        fallbackLocales?: (ValueOf<typeof SiteLocale>)[] | null | undefined;
+                        locale?: ValueOf<typeof SiteLocale> | null | undefined;
+                    };
+                };
                 _createdAt: {
                     type: any;
                     args: never;
@@ -957,6 +997,13 @@ export declare type CacheTypeDef = {
                 artworkSeoTags: {
                     type: Record<CacheTypeDef, "SeoField"> | null;
                     args: never;
+                };
+                artworkShortWriteup: {
+                    type: Record<CacheTypeDef, "ArtworkdetailModelArtworkShortWriteupField"> | null;
+                    args: {
+                        fallbackLocales?: (ValueOf<typeof SiteLocale>)[] | null | undefined;
+                        locale?: ValueOf<typeof SiteLocale> | null | undefined;
+                    };
                 };
                 artworkSlug: {
                     type: string | null;

@@ -125,6 +125,17 @@ type ArtistTalkRecord implements RecordInterface {
   id: ItemId!
 }
 
+type ArtworkdetailModelArtworkShortWriteupField {
+  blocks: [String!]!
+  links: [String!]!
+  value: JsonField!
+}
+
+type ArtworkdetailModelArtworkShortWriteupFieldMultiLocaleField {
+  locale: SiteLocale
+  value: ArtworkdetailModelArtworkShortWriteupField
+}
+
 type ArtworkdetailModelArtworkWriteupField {
   blocks: [String!]!
   links: [String!]!
@@ -146,6 +157,7 @@ input ArtworkdetailModelFilter {
   artworkImageGallery: GalleryFilter
   artworkMediums: TextFilter
   artworkSeoTags: SeoFilter
+  artworkShortWriteup: StructuredTextFilter
   artworkSlug: SlugFilter
   artworkTitle: StringFilter
   artworkWriteup: StructuredTextFilter
@@ -180,6 +192,15 @@ enum ArtworkdetailModelOrderBy {
 
 """Record of type Artwork (artworkdetail)"""
 type ArtworkdetailRecord implements RecordInterface {
+  _allArtworkShortWriteupLocales(
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): [ArtworkdetailModelArtworkShortWriteupFieldMultiLocaleField!]
   _createdAt: DateTime!
   _firstPublishedAt: DateTime
   _isValid: BooleanType!
@@ -202,6 +223,15 @@ type ArtworkdetailRecord implements RecordInterface {
     markdown: Boolean
   ): String
   artworkSeoTags: SeoField
+  artworkShortWriteup(
+    """
+    If you want to fallback to a default translation when a translation has not been found
+    """
+    fallbackLocales: [SiteLocale!]
+
+    """The locale to use to fetch the field's content"""
+    locale: SiteLocale
+  ): ArtworkdetailModelArtworkShortWriteupField
   artworkSlug: String
   artworkTitle: String
   artworkWriteup: ArtworkdetailModelArtworkWriteupField

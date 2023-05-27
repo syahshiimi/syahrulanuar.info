@@ -4,6 +4,7 @@
 	import type { PageData } from './$houdini';
 	import { pageLoaded } from '../../stores';
 	import Featureslider from '../components/dato/featureslider.svelte';
+	import Accordion from '../components/accordion.svelte';
 
 	// loader
 	let hasLoaded: boolean;
@@ -14,12 +15,7 @@
 	// Houdini
 	export let data: PageData;
 
-	// Hover trigger
-	let isHovering: boolean = false;
-
 	$: ({ GetHome } = data);
-
-	console.log(isHovering);
 </script>
 
 {#if hasLoaded === false}
@@ -30,47 +26,15 @@
 	{#if $GetHome.data}
 		<div
 			in:fly={{ x: -400, duration: 350, delay: 1000 }}
-			class="col-start-1 col-span-10
-            flex visible flex-col md:flex-row gap-y-2
-            md:gap-x-5 row-start-1"
+			class="invisible hidden md:flex md:visible flex-col md:flex-row gap-y-2
+            md:gap-x-5 md:w-8/12"
 		>
-			{#each $GetHome.data?.allArtworkdetails as image}
-				<Featureslider image={image ?? {}} />
-			{/each}
+			<Featureslider info={$GetHome.data ?? {}} />
 		</div>
-		<section
-			class="invisible hidden md:visible md:block col-span-full grow row-start-2 self-end content-end"
-		>
+		<section class="h-full visible block">
 			<ul>
-				{#each $GetHome.data?.allArtworkdetails as element, index}
-					<li
-						on:mouseenter={() => {
-							isHovering = true;
-						}}
-						on:mouseleave={() => {
-							isHovering = false;
-						}}
-						class="py-4
-                    text-info font-basis hover:pb-24 transition-all
-                    duration-250 ease-in flex flex-row
-                    justify-between cursor-pointer"
-					>
-						<span
-							class="font-bold font-basis
-                        text-info text-eerie-black"
-						>
-							{element.artworkTitle}
-						</span>
-						<span
-							class="font-bold font-basis
-                        text-eerie-black">{element.artworkYear}</span
-						>
-					</li>
-					<hr
-						in:fly={{ x: -400, duration: 1000 + 250 * index, delay: 1200 + 250 * index }}
-						class="border-t-2 border-eerie-black
-                        transition-all ease-in"
-					/>
+				{#each $GetHome.data?.allArtworkdetails as item, index}
+					<Accordion info={item} {index} />
 				{/each}
 			</ul>
 		</section>

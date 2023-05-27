@@ -12,7 +12,9 @@ module.exports = {
                 h3: ['32px', { lineHeight: '34px', letterSpacing: '-0.02em' }],
                 'h3-m': ['22px', { lineHeight: '22px', letterSpacing: '-0.02em' }],
                 info: ['24px', { lineHeight: '34px', letterSpacing: '-0.05em' }],
+                'info-m': ['20px', { lineHeight: '28px', letterSpacing: '-0.05em' }],
                 body: ['20px', { lineHeight: '22px', letterSpacing: '-0.03em' }],
+                'body-m': ['14px', { lineHeight: '18px', letterSpacing: '-0.03em' }],
                 link: ['16px', { lineHeight: '16px', letterSpacing: '-0.05em' }],
                 detail: ['16px', { lineHeight: '16px', letterSpacing: '-0.05em' }]
             },

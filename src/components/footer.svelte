@@ -6,7 +6,10 @@
 	];
 </script>
 
-<footer class="fixed left-0 bottom-4 w-full">
+<footer
+	class="fixed left-0 bottom-0 py-2 w-full bg-gray
+dark:bg-eerie-black"
+>
 	{#each links as link}
 		<a
 			href={link.href}

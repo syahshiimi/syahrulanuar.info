@@ -1,7 +1,7 @@
 export default {
     "name": "GetHome",
     "kind": "HoudiniQuery",
-    "hash": "da1fd16ec8c053c316481f8859f217b1828ba3a6c65e07c690ffec2eaf1c152d",
+    "hash": "7aa1453f90cfa27b4fe270e80486423f517f9028ff00504b3493b47088a87cd7",
 
     "raw": `query GetHome {
   allArtworkdetails {
@@ -21,6 +21,11 @@ export default {
     artworkYear
     artworkSlug
     artworkWriteup {
+      value
+      links
+      blocks
+    }
+    artworkShortWriteup {
       value
       links
       blocks
@@ -166,6 +171,36 @@ export default {
                             "visible": true
                         },
 
+                        "artworkShortWriteup": {
+                            "type": "ArtworkdetailModelArtworkShortWriteupField",
+                            "keyRaw": "artworkShortWriteup",
+                            "nullable": true,
+
+                            "selection": {
+                                "fields": {
+                                    "value": {
+                                        "type": "JsonField",
+                                        "keyRaw": "value",
+                                        "visible": true
+                                    },
+
+                                    "links": {
+                                        "type": "String",
+                                        "keyRaw": "links",
+                                        "visible": true
+                                    },
+
+                                    "blocks": {
+                                        "type": "String",
+                                        "keyRaw": "blocks",
+                                        "visible": true
+                                    }
+                                }
+                            },
+
+                            "visible": true
+                        },
+
                         "id": {
                             "type": "ItemId",
                             "keyRaw": "id",
@@ -187,4 +222,4 @@ export default {
     "partial": false
 };
 
-"HoudiniHash=da1fd16ec8c053c316481f8859f217b1828ba3a6c65e07c690ffec2eaf1c152d";
+"HoudiniHash=7aa1453f90cfa27b4fe270e80486423f517f9028ff00504b3493b47088a87cd7";
