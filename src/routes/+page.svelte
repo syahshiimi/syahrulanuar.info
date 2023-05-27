@@ -30,14 +30,17 @@
 	{#if $GetHome.data}
 		<div
 			in:fly={{ x: -400, duration: 350, delay: 1000 }}
-			class="col-start-1 col-span-10 flex flex-col md:flex-row gap-y-2
-            md:gap-x-5"
+			class="col-start-1 col-span-10
+            flex visible flex-col md:flex-row gap-y-2
+            md:gap-x-5 row-start-1"
 		>
 			{#each $GetHome.data?.allArtworkdetails as image}
 				<Featureslider image={image ?? {}} />
 			{/each}
 		</div>
-		<div class="col-span-full row-end-3 self-end">
+		<section
+			class="invisible hidden md:visible md:block col-span-full grow row-start-2 self-end content-end"
+		>
 			<ul>
 				{#each $GetHome.data?.allArtworkdetails as element, index}
 					<li
@@ -47,10 +50,10 @@
 						on:mouseleave={() => {
 							isHovering = false;
 						}}
-						in:fly={{ x: -400, duration: 350, delay: 900 + 250 * index }}
 						class="py-4
                     text-info font-basis hover:pb-24 transition-all
-                    duration-250 ease-in flex flex-row justify-between"
+                    duration-250 ease-in flex flex-row
+                    justify-between cursor-pointer"
 					>
 						<span
 							class="font-bold font-basis
@@ -70,6 +73,6 @@
 					/>
 				{/each}
 			</ul>
-		</div>
+		</section>
 	{/if}
 {/if}

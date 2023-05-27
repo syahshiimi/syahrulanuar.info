@@ -6,15 +6,12 @@
 	];
 </script>
 
-<footer
-	class="w-full grid grid-cols-12 place-self-end
-col-span-full"
->
+<footer class="fixed left-0 bottom-4 w-full">
 	{#each links as link}
 		<a
 			href={link.href}
-			class={`col-span-4 pt-12 md:pt-0 lg:cols-span-1 col-start-auto text-link
-            lg:mx-4 dark:text-gray font-basis font-bold
+			class={`pt-12 md:pt-0 col-span-full cols-span-1 text-link
+            mx-4 dark:text-gray font-basis font-bold
             hover:text-asparagus transition-all ease-in-out`}
 		>
 			{link.name}
