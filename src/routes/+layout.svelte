@@ -11,7 +11,7 @@
 <Logo />
 <main
 	class="h-full max-h-fit min-h-[100svh] w-screen
-    bg-gray dark:bg-eerie-black p-4 pt-24 md:pt-4 flex
+    bg-gray dark:bg-eerie-black px-4 pt-20 md:pt-4 flex
     flex-col md:flex md:flex-col gap-x-4 md:gap-y-20 items-stretch
     justify-between pb-20 lg:pb-16"
 >
