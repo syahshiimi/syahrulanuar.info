@@ -26,8 +26,7 @@
 	{#if $GetHome.data}
 		<div
 			in:fly={{ x: -400, duration: 350, delay: 1000 }}
-			class="invisible hidden md:flex md:visible flex-col md:flex-row gap-y-2
-            md:gap-x-5 md:w-8/12"
+			class="invisible hidden md:flex md:visible flex-col md:flex-row gap-y-2 md:gap-x-5 md:w-8/12"
 		>
 			<Featureslider info={$GetHome.data ?? {}} />
 		</div>

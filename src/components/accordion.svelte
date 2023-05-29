@@ -1,9 +1,7 @@
 <script lang="ts">
 	import type { GetHome$result } from '$houdini';
 	import { StructuredText } from '@datocms/svelte';
-	import { isParagraph } from 'datocms-structured-text-utils';
 	import { fly, fade } from 'svelte/transition';
-	import CustomParagraph from './dato/custom-paragraph.svelte';
 
 	let isHovering: boolean = false;
 
@@ -44,7 +42,7 @@
 	</div>
 	<div
 		in:fade
-		class={`flex flex-col  text-body-m max-w-2xl
+		class={`flex flex-col  text-body-m lg:text-body max-w-2xl
             transition-all duration-[750ms] ease-in-out
             delay-75 dark:text-gray font-basis font-medium
         gap-y-4 ${isHovering === true ? 'max-h-[1000px] py-4' : 'max-h-0 pt-2 pb-0'}`}
